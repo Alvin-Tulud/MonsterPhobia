@@ -14,10 +14,12 @@ public class FlashLightMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //take mouse position
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+        //take player position
         Vector3 playerPos = flashlight.parent.transform.position;
 
+        //make it 
         mousePos.x -= playerPos.x;
         mousePos.y -= playerPos.y;
 
