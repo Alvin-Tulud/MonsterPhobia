@@ -20,22 +20,22 @@ public class PlayerMove : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                Debug.Log("W");
+                //Debug.Log("W");
                 rb.velocity = Vector2.up * speed;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                Debug.Log("S");
+                //Debug.Log("S");
                 rb.velocity = Vector2.down * speed;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                Debug.Log("D");
+                //Debug.Log("D");
                 rb.velocity = Vector2.right * speed;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                Debug.Log("A");
+                //Debug.Log("A");
                 rb.velocity = Vector2.left * speed;
             }
         }
