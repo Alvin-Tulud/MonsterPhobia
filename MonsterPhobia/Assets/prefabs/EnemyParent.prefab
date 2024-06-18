@@ -178,16 +178,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGraphic
       objectReference: {fileID: 0}
-    - target: {fileID: 4046722564008767636, guid: 0933cdfe1ee010643b5f27e4b8ac5686, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8035028835953478862, guid: 0933cdfe1ee010643b5f27e4b8ac5686, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8035028835953478862, guid: 0933cdfe1ee010643b5f27e4b8ac5686, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035028835953478862, guid: 0933cdfe1ee010643b5f27e4b8ac5686, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8035028835953478862, guid: 0933cdfe1ee010643b5f27e4b8ac5686, type: 3}
