@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5618289627563981128}
   - component: {fileID: 3882960247685304121}
   - component: {fileID: 5525730393947933280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BookBinding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7198850218753512797}
   - component: {fileID: 6836124271482775875}
   - component: {fileID: 7112886133654654070}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: page left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 2402948193704621560}
   - component: {fileID: 389762058749564188}
   - component: {fileID: 558450954722446818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 2655329554037317977}
   - component: {fileID: 4215782893535664502}
   - component: {fileID: 8281480744712944305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: page move to right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 4464806481172904994}
   - component: {fileID: 1463935949905528923}
   - component: {fileID: 8079179079871298972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: page move to left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3270811647187068440}
   - component: {fileID: 3817942190116020004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 1962616415288968356}
   - component: {fileID: 6484417822750115212}
   - component: {fileID: 5597593683820773960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2093396577426163600}
   - component: {fileID: 826974135918698764}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7303508328689911645}
   - component: {fileID: 4371107065721008970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlashLightGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 7195675691535675152}
   - component: {fileID: 1589220309209391816}
   - component: {fileID: 178724888826234662}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: page right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6220874422918677864}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 5682803176207346195}
   - component: {fileID: 8300712314451016580}
   - component: {fileID: 5877852826686660691}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
