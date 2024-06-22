@@ -14,9 +14,7 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private Vector2 PlayerDirection = new Vector2(0f,0f);
-    private float xDirection = 0f;
-    private float yDirection = 0f;
+    private Vector2 PlayerDirection = Vector2.zero;
 
     private void FixedUpdate()
     {
