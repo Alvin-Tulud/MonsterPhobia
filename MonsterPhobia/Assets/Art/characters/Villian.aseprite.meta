@@ -126,8 +126,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 29
-      y: 4
+      x: 4
+      y: 37
       width: 17
       height: 23
     spriteID: cb25cf9990898314abd5ac5bbe9ead6e
@@ -138,7 +138,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 29, y: 4}
+    uvTransform: {x: 4, y: 37}
   - name: Villian_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -147,7 +147,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 37
+      y: 68
       width: 17
       height: 23
     spriteID: d3692fd4a9effe34784cae7e7ae26f14
@@ -158,7 +158,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 37}
+    uvTransform: {x: 4, y: 68}
   - name: Villian_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -166,8 +166,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 29
-      y: 37
+      x: 4
+      y: 99
       width: 17
       height: 23
     spriteID: 0d7eca9a6f0f6e3438d4205e0c09594f
@@ -178,7 +178,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 29, y: 37}
+    uvTransform: {x: 4, y: 99}
   - name: Villian_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -199,6 +199,126 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Villian_Frame_4
+    originalName: 
+    pivot: {x: 0.47058824, y: -0.13043478}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 4
+      width: 17
+      height: 23
+    spriteID: cae843f47f37cf44196f04c0e8d9fce1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 4}
+  - name: Villian_Frame_5
+    originalName: 
+    pivot: {x: 0.47058824, y: -0.13043478}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 35
+      width: 17
+      height: 23
+    spriteID: a1edfe185c480e941830182c04ac7faf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 35}
+  - name: Villian_Frame_6
+    originalName: 
+    pivot: {x: 0.4166667, y: -0.7857143}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 27
+      width: 24
+      height: 14
+    spriteID: 640e0e36c5f67a340818c62985c2e6b6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 27}
+  - name: Villian_Frame_7
+    originalName: 
+    pivot: {x: 0.39999998, y: -0.6428572}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 86
+      y: 4
+      width: 25
+      height: 14
+    spriteID: 52e0a7adedfcc7d4f97ec33a4a919bfa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 86, y: 4}
+  - name: Villian_Frame_8
+    originalName: 
+    pivot: {x: 0.4166667, y: -0.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 4
+      width: 24
+      height: 15
+    spriteID: 01fd700cdc88c314cbd7a4dbee631e36
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 4}
+  - name: Villian_Frame_9
+    originalName: 
+    pivot: {x: 0.42857143, y: -0.8333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 49
+      width: 21
+      height: 12
+    spriteID: 983ea0f98704c214d885d8a1419ed625
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 49}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -240,6 +360,54 @@ ScriptedImporter:
         width: 17
         height: 25
       spriteId: bf418af6e6c7013438e37b145bedfaca
+    - name: Villian_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 8
+        y: 3
+        width: 17
+        height: 23
+      spriteId: cae843f47f37cf44196f04c0e8d9fce1
+    - name: Villian_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 8
+        y: 3
+        width: 17
+        height: 23
+      spriteId: a1edfe185c480e941830182c04ac7faf
+    - name: Villian_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 11
+        width: 24
+        height: 14
+      spriteId: 640e0e36c5f67a340818c62985c2e6b6
+    - name: Villian_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 6
+        y: 9
+        width: 25
+        height: 14
+      spriteId: 52e0a7adedfcc7d4f97ec33a4a919bfa
+    - name: Villian_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 6
+        y: 9
+        width: 24
+        height: 15
+      spriteId: 01fd700cdc88c314cbd7a4dbee631e36
+    - name: Villian_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 7
+        y: 10
+        width: 21
+        height: 12
+      spriteId: 983ea0f98704c214d885d8a1419ed625
     linkedCells: []
     parentIndex: -1
   platformSettings:

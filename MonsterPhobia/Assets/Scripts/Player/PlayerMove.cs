@@ -14,30 +14,47 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private Vector2 PlayerDirection = new Vector2(0f,0f);
+    private float xDirection = 0f;
+    private float yDirection = 0f;
+
     private void FixedUpdate()
     {
         if (canMove)
-        {
+        {   
+            // Check for W and S input (Goes nowhere if both are pressed)
             if (Input.GetKey(KeyCode.W))
             {
                 //Debug.Log("W");
-                rb.velocity = Vector2.up * speed;
-            }
+                PlayerDirection.y += 1f;
+            } 
             if (Input.GetKey(KeyCode.S))
             {
                 //Debug.Log("S");
-                rb.velocity = Vector2.down * speed;
+                PlayerDirection.y -= 1f;
             }
+
+
+            // Check for A and D input (Goes nowhere if both are pressed)
             if (Input.GetKey(KeyCode.D))
             {
                 //Debug.Log("D");
-                rb.velocity = Vector2.right * speed;
-            }
+                PlayerDirection.x += 1f;
+            } 
             if (Input.GetKey(KeyCode.A))
             {
                 //Debug.Log("A");
-                rb.velocity = Vector2.left * speed;
+                PlayerDirection.x -= 1f;
             }
+            
+
+            // Convert the vector to normalized form and change player's velocity
+            PlayerDirection.Normalize();
+
+            rb.velocity = PlayerDirection * speed;
+
+            // Reset PlayerDirection for next iteration of FixedUpdate
+            PlayerDirection = Vector2.zero;
         }
     }
 

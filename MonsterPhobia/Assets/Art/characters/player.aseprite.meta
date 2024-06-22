@@ -141,8 +141,8 @@ ScriptedImporter:
     uvTransform: {x: 29, y: 4}
   - name: player_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.06666667}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -221,8 +221,8 @@ ScriptedImporter:
     uvTransform: {x: 29, y: 80}
   - name: player_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.06666667}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -280,7 +280,7 @@ ScriptedImporter:
       frameIndex: 1
       cellRect:
         x: 8
-        y: 1
+        y: 2
         width: 17
         height: 30
       spriteId: 441d84e9775f1f849a4bf1fac8dc6c32
@@ -312,7 +312,7 @@ ScriptedImporter:
       frameIndex: 5
       cellRect:
         x: 8
-        y: 1
+        y: 2
         width: 17
         height: 30
       spriteId: ba35f116e1ec437409e7a462571e2eee
