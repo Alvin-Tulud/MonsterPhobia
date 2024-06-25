@@ -15,7 +15,7 @@ public class GUIControl : MonoBehaviour
         book = transform.GetChild(0).gameObject;
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
-        flashLight = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<FlashLightMove>();
+        flashLight = GameObject.FindGameObjectWithTag("FlashLight").GetComponent<FlashLightMove>();
 
         onoff = false;
     }
@@ -24,13 +24,15 @@ public class GUIControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("here");
             book.SetActive(!onoff);
 
-
+            Debug.Log("here1");
             player.enabled = onoff;
+            Debug.Log("here2");
             flashLight.enabled = onoff;
 
-
+            Debug.Log("here3");
             onoff = !onoff;
         }
     }

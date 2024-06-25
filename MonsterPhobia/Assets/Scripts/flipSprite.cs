@@ -29,12 +29,12 @@ public class flipSprite : MonoBehaviour
         if (pathing.x < 0)
         {
             //Debug.Log(pathing + " : " + transform.parent.name + " : flip");
-            spritetoflip.rotation = Quaternion.Euler(0, 180, 0);
+            spritetoflip.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (pathing.x > 0)
         {
             //Debug.Log(pathing + " : " + transform.parent.name);
-            spritetoflip.rotation = Quaternion.Euler(0, 0, 0);
+            spritetoflip.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }
