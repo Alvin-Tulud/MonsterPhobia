@@ -76035,6 +76035,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1276187525842322382, guid: c37fe2ae8ae4a6a48bda8e2668fa7b8c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374555771482034828, guid: c37fe2ae8ae4a6a48bda8e2668fa7b8c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 750
+      objectReference: {fileID: 0}
     - target: {fileID: 5779246329655457277, guid: c37fe2ae8ae4a6a48bda8e2668fa7b8c, type: 3}
       propertyPath: m_TagString
       value: Untagged

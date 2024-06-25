@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5c7fd25c212aba4b8da45671583bf71
+guid: 043b2695f1b73fb4280e89170e447cf0
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638541663601956590
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,10 +119,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Villian
+  - name: Villian Walk_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.13043478}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 37
       width: 17
       height: 23
-    spriteID: cb25cf9990898314abd5ac5bbe9ead6e
+    spriteID: 00773eb8c41d7924ba2ba114a7a73065
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,10 +139,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 37}
-  - name: Villian_Frame_1
+  - name: Villian Walk_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.17391305}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 68
       width: 17
       height: 23
-    spriteID: d3692fd4a9effe34784cae7e7ae26f14
+    spriteID: 8818e0625f8bc3445bf5944b6619bdef
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,10 +159,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 68}
-  - name: Villian_Frame_2
+  - name: Villian Walk_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.13043478}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 99
       width: 17
       height: 23
-    spriteID: 0d7eca9a6f0f6e3438d4205e0c09594f
+    spriteID: d36228dd6a3667e45aa5319f1a741aef
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,10 +179,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 99}
-  - name: Villian_Frame_3
+  - name: Villian Walk_Frame_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.08}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 4
       width: 17
       height: 25
-    spriteID: bf418af6e6c7013438e37b145bedfaca
+    spriteID: 02728881cb9d00048bcad0d22f3c8a5e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -199,10 +199,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Villian_Frame_4
+  - name: Villian Walk_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.47058824, y: -0.13043478}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 4
       width: 17
       height: 23
-    spriteID: cae843f47f37cf44196f04c0e8d9fce1
+    spriteID: 2b894d17776c9734a80bcdfcbe23e2af
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -222,110 +222,55 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1603952217
-    name: Villian
+    guid: 1678390642
+    name: Villian Walk
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Villian_Frame_0
+    - name: Villian Walk_Frame_0
       frameIndex: 0
       cellRect:
         x: 8
         y: 3
         width: 17
         height: 23
-      spriteId: cb25cf9990898314abd5ac5bbe9ead6e
-    - name: Villian_Frame_1
+      spriteId: 00773eb8c41d7924ba2ba114a7a73065
+    - name: Villian Walk_Frame_1
       frameIndex: 1
       cellRect:
         x: 8
         y: 4
         width: 17
         height: 23
-      spriteId: d3692fd4a9effe34784cae7e7ae26f14
-    - name: Villian_Frame_2
+      spriteId: 8818e0625f8bc3445bf5944b6619bdef
+    - name: Villian Walk_Frame_2
       frameIndex: 2
       cellRect:
         x: 8
         y: 3
         width: 17
         height: 23
-      spriteId: 0d7eca9a6f0f6e3438d4205e0c09594f
-    - name: Villian_Frame_3
+      spriteId: d36228dd6a3667e45aa5319f1a741aef
+    - name: Villian Walk_Frame_3
       frameIndex: 3
       cellRect:
         x: 8
         y: 2
         width: 17
         height: 25
-      spriteId: bf418af6e6c7013438e37b145bedfaca
-    - name: Villian_Frame_4
+      spriteId: 02728881cb9d00048bcad0d22f3c8a5e
+    - name: Villian Walk_Frame_4
       frameIndex: 4
       cellRect:
         x: 8
         y: 3
         width: 17
         height: 23
-      spriteId: cae843f47f37cf44196f04c0e8d9fce1
+      spriteId: 2b894d17776c9734a80bcdfcbe23e2af
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Android
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: iPhone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 32}
