@@ -17,11 +17,11 @@ public struct MonsterAttributes
                 MAggros = new[] { MonsterAggro.Rush };
                 break;
             case MonsterType.Bill:
-                MPassives = new[] { MonsterPassive.Corner };
+                MPassives = new[] { MonsterPassive.Stalk };
                 MAggros = new[] { MonsterAggro.Stalk };
                 break;
             case MonsterType.Garry:
-                MPassives = new[] { MonsterPassive.Sprint };
+                MPassives = new[] { MonsterPassive.Guard };
                 MAggros = new[] { MonsterAggro.Rush };
                 break;
             case MonsterType.None:
