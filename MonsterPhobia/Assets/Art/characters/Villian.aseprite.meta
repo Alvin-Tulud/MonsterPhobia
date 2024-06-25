@@ -201,8 +201,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Villian_Frame_4
     originalName: 
-    pivot: {x: 0.47058824, y: -0.13043478}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -221,8 +221,8 @@ ScriptedImporter:
     uvTransform: {x: 29, y: 4}
   - name: Villian_Frame_5
     originalName: 
-    pivot: {x: 0.47058824, y: -0.13043478}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -241,8 +241,8 @@ ScriptedImporter:
     uvTransform: {x: 29, y: 35}
   - name: Villian_Frame_6
     originalName: 
-    pivot: {x: 0.4166667, y: -0.7857143}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -261,8 +261,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 27}
   - name: Villian_Frame_7
     originalName: 
-    pivot: {x: 0.39999998, y: -0.6428572}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -281,8 +281,8 @@ ScriptedImporter:
     uvTransform: {x: 86, y: 4}
   - name: Villian_Frame_8
     originalName: 
-    pivot: {x: 0.4166667, y: -0.6}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -301,8 +301,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 4}
   - name: Villian_Frame_9
     originalName: 
-    pivot: {x: 0.42857143, y: -0.8333334}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
