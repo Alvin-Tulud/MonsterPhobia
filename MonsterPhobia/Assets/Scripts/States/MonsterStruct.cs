@@ -3,9 +3,8 @@ using System.Runtime.InteropServices;
 public struct MonsterAttributes
 {
     public MonsterType MType;
-    public MonsterPatrol[] MPatrols;
-    public MonsterChase[] MChases;
-    public MonsterAttack[] MAttacks;
+    public MonsterPassive[] MPassives;
+    public MonsterAggro[] MAggros;
 
     public MonsterAttributes(MonsterType type)
     {
@@ -14,25 +13,21 @@ public struct MonsterAttributes
         switch (type)
         {
             case MonsterType.Axylotyl:
-                MPatrols = new[] { MonsterPatrol.Wander };
-                MChases = new[] { MonsterChase.Rush };
-                MAttacks = new[] { MonsterAttack.Contact };
+                MPassives = new[] { MonsterPassive.Wander };
+                MAggros = new[] { MonsterAggro.Rush };
                 break;
             case MonsterType.Bill:
-                MPatrols = new[] { MonsterPatrol.Corner };
-                MChases = new[] { MonsterChase.Stalk };
-                MAttacks = new[] { MonsterAttack.Contact };
+                MPassives = new[] { MonsterPassive.Corner };
+                MAggros = new[] { MonsterAggro.Stalk };
                 break;
             case MonsterType.Garry:
-                MPatrols = new[] { MonsterPatrol.Sprint };
-                MChases = new[] { MonsterChase.Rush };
-                MAttacks = new[] { MonsterAttack.Contact };
+                MPassives = new[] { MonsterPassive.Sprint };
+                MAggros = new[] { MonsterAggro.Rush };
                 break;
             case MonsterType.None:
             default:
-                MPatrols = new[] { MonsterPatrol.None };
-                MChases = new[] { MonsterChase.None };
-                MAttacks = new[] { MonsterAttack.None };
+                MPassives = new[] { MonsterPassive.None };
+                MAggros = new[] { MonsterAggro.None };
                 break;
         }
     }

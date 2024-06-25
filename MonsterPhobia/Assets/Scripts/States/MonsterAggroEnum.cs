@@ -1,4 +1,4 @@
-public enum MonsterChase
+public enum MonsterAggro
 {
     None = 0,
     Stalk = 1,
