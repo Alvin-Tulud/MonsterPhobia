@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cea359166e18df46a8abcca6039b0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetSystem: {fileID: 3538501898376502907}
+  pathingSystem: {fileID: 1555880988713710292}
 --- !u!1001 &6853875846719796337
 PrefabInstance:
   m_ObjectHideFlags: 0
