@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2620135535834500356}
   - component: {fileID: -723399424049470793}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cornerhide
   m_TagString: cornerhide
   m_Icon: {fileID: 0}

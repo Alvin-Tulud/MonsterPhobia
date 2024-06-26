@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerGraphic
       objectReference: {fileID: 0}
+    - target: {fileID: 4371107065721008970, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 8588401950550580228, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
