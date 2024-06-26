@@ -1,6 +1,6 @@
 public enum MonsterAggro
 {
     None = 0,
-    Stalk = 1,
-    Rush = 2,
+    Prowler = 1,
+    Chaser = 2,
 }

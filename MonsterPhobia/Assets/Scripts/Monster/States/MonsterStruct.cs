@@ -9,18 +9,18 @@ public struct MonsterAttributes
     public MonsterAttributes(MonsterType type)
     {
         MType = type;
-        MAggro = MonsterAggro.Rush;
+        MAggro = MonsterAggro.Chaser;
 
         switch (type)
         {
             case MonsterType.Axylotyl:
-                MPassive = MonsterPassive.Wander;
+                MPassive = MonsterPassive.Wanderer;
                 break;
             case MonsterType.Bill:
-                MPassive = MonsterPassive.Stalk;
+                MPassive = MonsterPassive.Stalker;
                 break;
             case MonsterType.Garry:
-                MPassive = MonsterPassive.Guard;
+                MPassive = MonsterPassive.Territorial;
                 break;
             case MonsterType.None:
             default:

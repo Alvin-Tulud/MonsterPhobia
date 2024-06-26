@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1555880988713710292}
   - component: {fileID: 3538501898376502907}
   - component: {fileID: 5774075572312967381}
+  - component: {fileID: 148645650265284258}
   m_Layer: 7
   m_Name: EnemyParent
   m_TagString: Untagged
@@ -166,6 +167,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.4, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &148645650265284258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2648197406129596670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cea359166e18df46a8abcca6039b0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6853875846719796337
 PrefabInstance:
   m_ObjectHideFlags: 0
