@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MonsterBehaviour : MonoBehaviour
 {
@@ -14,17 +15,18 @@ public class MonsterBehaviour : MonoBehaviour
     // Constant values to change the monster's behaviour patterns
     private const int PASSIVE_SPEED = 2;
     private const int AGGRO_SPEED = 3;
-    private const int MAX_EXCLUDED_CORNERS = 10;
-    private const float SECONDS_TO_LOSE_AGGRO = 5.0f;
-    private const float DETECTION_DISTANCE = 2.5f;
-    private const float SECONDS_TO_STALK = 1.0f;
-    private const float SECONDS_TO_GUARD = 3.0f;
+    private const int MAX_EXCLUDED_CORNERS = 20;
+    private const float SECONDS_TO_LOSE_AGGRO = 7.0f;
+    private const float DETECTION_DISTANCE = 6.0f;
+    private const float SECONDS_TO_STALK = 2.0f;
+    private const float SECONDS_TO_GUARD = 4.0f;
 
     // Variables used for the monster's behaviour
     private MonsterAttributes MAttributes;
-    private Queue<GameObject> ExcludedCorners = new Queue<GameObject>();
+    private Queue<GameObject> ExcludedCorners;
+    public int QueueLength = 0;
     public bool CornerTargetChange = true;
-    private float PassiveTimer = 0.0f;
+    public bool WaitingAtTarget = false;
     public bool ChangedMonsterState = true;
     public bool Aggroed = false;
     public float EvasionTimer = 0.0f;
@@ -34,7 +36,9 @@ public class MonsterBehaviour : MonoBehaviour
     void Start()
     {
         // Randomly generate a new monster based on attributes
-        MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(1, 2));
+        MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(2, 3));
+        // Start up ExcludedCorners Queue
+        ExcludedCorners = new Queue<GameObject>();
     }
 
     void FixedUpdate()
@@ -90,7 +94,7 @@ public class MonsterBehaviour : MonoBehaviour
                 ChangedMonsterState = true;
                 // Clear out any passive variables used by the monster behaviours
                 clearExcludedCorners();
-                PassiveTimer = 0.0f;
+                pathingSystem.canMove = true;
                 CornerTargetChange = true;
             }
 
@@ -225,6 +229,8 @@ public class MonsterBehaviour : MonoBehaviour
         {
             removeHeadOfExcludedCorners();
         }
+
+        QueueLength = ExcludedCorners.Count;
     }
     private void removeHeadOfExcludedCorners()
     {
@@ -242,7 +248,7 @@ public class MonsterBehaviour : MonoBehaviour
             corner.tag = "cornerpeek";
         }
 
-        
+        QueueLength = ExcludedCorners.Count;
     }
     private void clearExcludedCorners()
     {
@@ -255,35 +261,37 @@ public class MonsterBehaviour : MonoBehaviour
     /**
      *  Deals with using the exlcuded corners and the tag needed to find a specific kind of corner (string cornerType = null)
      */ 
-    private GameObject nearestCornerToMonster(string cornerType = null)
+    private GameObject nearestCornerToEntity(Transform entity, string cornerType = null)
     {
+        const float RADIUS_FOR_SEARCH = 50.0f;
         LayerMask cornerMask = LayerMask.GetMask("Corner");
-        RaycastHit2D[] allCorners = Physics2D.CircleCastAll((Vector2) transform.position, 100.0f, Vector2.zero,0.0f,cornerMask);
-
-
-
+        Vector2 locationOfEntity = (Vector2) entity.position;
         
+        Collider2D[] allCorners = Physics2D.OverlapCircleAll(locationOfEntity, RADIUS_FOR_SEARCH, cornerMask);
 
         if (allCorners.Length == 0) { return null; }
 
-        Debug.DrawLine(transform.position, allCorners[0].transform.position,Color.red,2.0f);
+        Debug.DrawLine(locationOfEntity, allCorners[0].transform.position,Color.red,2.0f);
 
         // Remove corners from ExcludedCorners
-        allCorners = allCorners.Where(corner => !corner.collider.CompareTag("cornerExcluded_p") && !corner.collider.CompareTag("cornerExcluded_h")).ToArray();
+        allCorners = allCorners.Where(corner => !corner.CompareTag("cornerExcluded_p") && !corner.CompareTag("cornerExcluded_h")).ToArray();
 
         // Remove all corner that DON'T use the same tag, or do nothing if no tag is specified
         if (cornerType != null)
         {
-            allCorners = allCorners.Where(corner => corner.collider.CompareTag(cornerType)).ToArray();
+            allCorners = allCorners.Where(corner => corner.CompareTag(cornerType)).ToArray();
         }
 
-        Debug.DrawLine(transform.position, allCorners[0].transform.position, Color.blue, 2.0f);
+        // Sort allCorners by distance from the Monster
+        allCorners = allCorners.OrderBy(corner => (((Vector2) corner.transform.position) - locationOfEntity).magnitude).ToArray();
+
+        Debug.DrawLine(locationOfEntity, allCorners[0].transform.position, Color.blue, 2.0f);
 
 
         if (allCorners.Length > 0)
         {
-            Debug.Log(allCorners[0].transform.name);
-            return allCorners[0].collider.gameObject;
+            Debug.Log(allCorners[0].gameObject);
+            return allCorners[0].gameObject;
         }
         return null;
     }
@@ -293,7 +301,7 @@ public class MonsterBehaviour : MonoBehaviour
      */
     private bool nearTargetCorner()
     {
-        const float RADIUS_FOR_CORNER = 1.0f;
+        const float RADIUS_FOR_CORNER = 0.7f;
 
         Vector2 locationOfMonster = (Vector2) transform.position;
         GameObject targetCorner = targetSystem.target.gameObject;
@@ -311,12 +319,12 @@ public class MonsterBehaviour : MonoBehaviour
         if (CornerTargetChange)
         {   
             // Find new Corner to go to
-            GameObject newCorner = nearestCornerToMonster("cornerhide");
+            GameObject newCorner = nearestCornerToEntity(transform,"cornerhide");
             // Add new Corner to queue
             addToExcludedCorners(newCorner);
             // Set target to the new Corner
             targetSystem.target = newCorner.transform;
-            
+              
             // Start doing NOT this algo
             CornerTargetChange = false;
         } 
@@ -331,13 +339,47 @@ public class MonsterBehaviour : MonoBehaviour
     }
 
     /**
+     *  Coroutine method to allow for waiting before changing the target corner
+     */ 
+    IEnumerator WaitAfterReachingTarget(float seconds)
+    {
+
+        yield return new WaitForSeconds(seconds);
+
+        CornerTargetChange = true;
+    }
+
+    /**
      * Deals with the passive behaviour of a Stalker monster
      */
     private void StalkerAlgorithm()
     {
-        GameObject newCorner = nearestCornerToMonster("cornerpeek");
+        if (CornerTargetChange)
+        {
+            // Makes Stalker not wait at previous target
+            WaitingAtTarget = false;
 
-        addToExcludedCorners(newCorner);
+            // Find new Corner to go to
+            GameObject newCorner = nearestCornerToEntity(GameObject.FindGameObjectWithTag("Player").transform, "cornerpeek");
+            // Add new Corner to queue
+            addToExcludedCorners(newCorner);
+            // Set target to the new Corner
+            targetSystem.target = newCorner.transform;
+
+            // Start doing NOT this algo
+            CornerTargetChange = false;
+        }
+        else
+        {
+            // Make new Target after reaching current target corner
+            if (nearTargetCorner() && !WaitingAtTarget)
+            {
+                WaitingAtTarget = true;
+                StartCoroutine(WaitAfterReachingTarget(SECONDS_TO_STALK));
+            }
+        }
+
+
 
         /* For waiting after getting to the location
          
@@ -355,12 +397,16 @@ public class MonsterBehaviour : MonoBehaviour
         // 4. Avoid running this algo again until the monster reached the new corner, AND has waiting for SECONDS_TO_STALK
     }
 
+
+    
+
     /**
      * Deals with the passive behaviour of a Territorial monster
      */
     private void TerritorialAlgorithm()
-    {
-        GameObject newCorner = nearestCornerToMonster();
+    {   
+        // Make a spawn 
+        GameObject newCorner = nearestCornerToEntity(transform);
 
         // Need to make two new tags to determine which corners lie in the monster's terrritory AND when it is explored by the monster already
 
