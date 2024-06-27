@@ -8,6 +8,8 @@ TagManager:
   - cornerhide
   - cornerpeek
   - FlashLight
+  - cornerExcluded_p
+  - cornerExcluded_h
   layers:
   - Default
   - TransparentFX

@@ -23,11 +23,11 @@ public class MonsterBehaviour : MonoBehaviour
     // Variables used for the monster's behaviour
     private MonsterAttributes MAttributes;
     private Queue<GameObject> ExcludedCorners = new Queue<GameObject>();
-    private bool CornerTargetChange = true;
+    public bool CornerTargetChange = true;
     private float PassiveTimer = 0.0f;
-    private bool ChangedMonsterState = true;
-    private bool Aggroed = false;
-    private float EvasionTimer = 0.0f;
+    public bool ChangedMonsterState = true;
+    public bool Aggroed = false;
+    public float EvasionTimer = 0.0f;
     
 
 
@@ -108,7 +108,7 @@ public class MonsterBehaviour : MonoBehaviour
             // Change target and speed to chase the player at a faster pace, when initiated; Also initializes the timer for Aggro State
             if (ChangedMonsterState)
             {
-                targetSystem.target = GameObject.Find("Player").transform;
+                targetSystem.target = GameObject.FindGameObjectWithTag("Player").transform;
 
                 pathingSystem.maxSpeed = AGGRO_SPEED;
 
@@ -205,6 +205,9 @@ public class MonsterBehaviour : MonoBehaviour
      */
     private void addToExcludedCorners(GameObject newCorner)
     {
+        if (newCorner == null) { return; }
+
+
         // Changes tag to excluded variant
         if (newCorner.CompareTag("cornerhide"))
         {
@@ -227,6 +230,8 @@ public class MonsterBehaviour : MonoBehaviour
     {
         GameObject corner = ExcludedCorners.Dequeue();
 
+        if (corner == null) { return; }
+
         // Changes tag back to original variant
         if (corner.CompareTag("cornerExcluded_h"))
         {
@@ -236,6 +241,8 @@ public class MonsterBehaviour : MonoBehaviour
         {
             corner.tag = "cornerpeek";
         }
+
+        
     }
     private void clearExcludedCorners()
     {
@@ -250,7 +257,16 @@ public class MonsterBehaviour : MonoBehaviour
      */ 
     private GameObject nearestCornerToMonster(string cornerType = null)
     {
-        RaycastHit2D[] allCorners = Physics2D.CircleCastAll((Vector2) transform.position, 100.0f, Vector2.zero);
+        LayerMask cornerMask = LayerMask.GetMask("Corner");
+        RaycastHit2D[] allCorners = Physics2D.CircleCastAll((Vector2) transform.position, 100.0f, Vector2.zero,0.0f,cornerMask);
+
+
+
+        
+
+        if (allCorners.Length == 0) { return null; }
+
+        Debug.DrawLine(transform.position, allCorners[0].transform.position,Color.red,2.0f);
 
         // Remove corners from ExcludedCorners
         allCorners = allCorners.Where(corner => !corner.collider.CompareTag("cornerExcluded_p") && !corner.collider.CompareTag("cornerExcluded_h")).ToArray();
@@ -261,7 +277,15 @@ public class MonsterBehaviour : MonoBehaviour
             allCorners = allCorners.Where(corner => corner.collider.CompareTag(cornerType)).ToArray();
         }
 
-        return allCorners[0].collider.gameObject;
+        Debug.DrawLine(transform.position, allCorners[0].transform.position, Color.blue, 2.0f);
+
+
+        if (allCorners.Length > 0)
+        {
+            Debug.Log(allCorners[0].transform.name);
+            return allCorners[0].collider.gameObject;
+        }
+        return null;
     }
 
     /**
@@ -269,12 +293,13 @@ public class MonsterBehaviour : MonoBehaviour
      */
     private bool nearTargetCorner()
     {
-        const float DISTANCE_FOR_CORNER = 3.0f;
+        const float RADIUS_FOR_CORNER = 1.0f;
 
+        Vector2 locationOfMonster = (Vector2) transform.position;
+        GameObject targetCorner = targetSystem.target.gameObject;
 
-
-        // Probably need to make a new tag to determine if the corner is a target 
-        return Physics2D.OverlapCircle; 
+        // Detects the corner with a circular hitbox that is 1.5 units in length, centered at the Monster
+        return Physics2D.CircleCastAll(locationOfMonster, RADIUS_FOR_CORNER, Vector2.zero).Where(hit => hit.transform.gameObject == targetCorner).ToArray().Length > 0;
     }
 
 
@@ -297,18 +322,12 @@ public class MonsterBehaviour : MonoBehaviour
         } 
         else
         {
-            if ()
+            // Make new target, or immediately go to the next corner, after reaching the current target corner
+            if (nearTargetCorner())
             {
                 CornerTargetChange = true;
             }
         }
-        
-
-        // TODO: Implement a system to
-        // 1. Find a nearby patrol corner, that is not in ExcludedCorners
-        // 2. Set the targeting system to that nearby corner
-        // 3. Add that nearby corner to ExcludedCorners, and remove any excess corners if Queue is greater than 10
-        // 4. Avoid running this algo again until the monster reached the new corner
     }
 
     /**
