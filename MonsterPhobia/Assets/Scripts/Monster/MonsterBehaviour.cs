@@ -20,10 +20,12 @@ public class MonsterBehaviour : MonoBehaviour
 
     // Variables used for the monster's behaviour
     private MonsterAttributes MAttributes;
-    private float PassiveTimer = 0.0f;
+    private Queue<GameObject> ExcludedCorners = new Queue<GameObject>();
     private bool TargetChangeNeeded = true;
+    private float PassiveTimer = 0.0f;
+    private bool ChangedMonsterState = true;
     private bool Aggroed = false;
-    private float AggroTimer = 0.0f;
+    private float EvasionTimer = 0.0f;
     
 
 
@@ -43,49 +45,49 @@ public class MonsterBehaviour : MonoBehaviour
         if (!Aggroed)
         {
             /**
-             *      TARGET AND SPEED CHANGE FROM AGGRO OR STARTING OFF
+             *      ++ TARGET AND SPEED CHANGE FROM AGGRO OR STARTING OFF ++ 
              */
             // Change target off player and speed to calmer pace, when initiated
-            if (TargetChangeNeeded)
+            if (ChangedMonsterState)
             {
                 targetSystem.target = null;
 
                 pathingSystem.maxSpeed = PASSIVE_SPEED;
 
-                TargetChangeNeeded = false;
+                ChangedMonsterState = false;
             }
 
 
             /**
-             *      PASSIVE BEHAVIOURS
+             *      ++ PASSIVE BEHAVIOURS ++
              */
             if (MAttributes.MPassive == MonsterPassive.Wanderer)            // If Random rolled a 1
             {
-                // Change targets between corners for patrols
-                // Change to High Speed
+                WandererAlgorithm();
             }
 
             if (MAttributes.MPassive == MonsterPassive.Stalker)             // If Random rolled a 2
-            {
-                // Change targets between corners for stalking
-                // Change to Medium Speed
+            { 
+                WandererAlgorithm();
             }
 
             if (MAttributes.MPassive == MonsterPassive.Territorial)         // If Random rolled a 3
             {
-                // Change targets to corners within the area being guarded
-                // Change to Low Speed
+                WandererAlgorithm();
             }
 
 
-
-
+            /**
+             *      ++ GAINING AGGRO / DETECTION SYSTEM ++
+             */
             // Detection System for when Monster is not Aggroed yet
             if (FoundPlayerOnSight())
             {
                 // Change to Aggro state
                 Aggroed = true;
-                TargetChangeNeeded = true;
+                ChangedMonsterState = true;
+                // Clear the excluded corners;
+                ExcludedCorners.Clear();
             }
 
         }
@@ -97,21 +99,23 @@ public class MonsterBehaviour : MonoBehaviour
         else
         {
             /**
-             *      TARGET AND SPEED CHANGE FROM PASSIVE
+             *      -- TARGET AND SPEED CHANGE FROM PASSIVE --
              */
-            // Change target and speed to chase the player at a faster pace, when initiated
-            if (TargetChangeNeeded)
+            // Change target and speed to chase the player at a faster pace, when initiated; Also initializes the timer for Aggro State
+            if (ChangedMonsterState)
             {
                 targetSystem.target = GameObject.Find("Player").transform;
 
                 pathingSystem.maxSpeed = AGGRO_SPEED;
 
-                TargetChangeNeeded = false;
+                EvasionTimer = 0.0f;
+
+                ChangedMonsterState = false;
             }
             
 
             /**
-             *      AGGRO BEHAVIOURS
+             *      -- AGGRO BEHAVIOURS --
              */ 
             if (MAttributes.MAggro == MonsterAggro.Chaser)
             {
@@ -119,20 +123,23 @@ public class MonsterBehaviour : MonoBehaviour
             }
 
 
-
-            if (FoundPlayerOnSight()) // Check if Monster can see Player (This should be its own method)
+            /**
+             *      -- LOSING AGGRO / EVASION SYSTEM --
+             */
+            // Detection System while Monster is Aggroed
+            if (FoundPlayerOnSight()) // Resets timer if the monster can see the player
             {
-                // Reset EscapeTimer 
+                EvasionTimer = 0.0f;
             }
-            else
+            else                     // Decrement the timer if the monster is unable to see the player
             {
-                // Decrement Timer 
+                EvasionTimer -= Time.deltaTime;
 
-                if (false) // Check if Timer is lesser than or equal to 0
+                if (EvasionTimer >= SECONDS_TO_LOSE_AGGRO) // Check if Player has evaded the monster for SECONDS_TO_LOSE_AGGRO seconds
                 {
                     // Go back to Passive State
                     Aggroed = false;
-                    TargetChangeNeeded = true;
+                    ChangedMonsterState = true;
                 }
             }
         }
@@ -163,5 +170,41 @@ public class MonsterBehaviour : MonoBehaviour
 
         // Case in which the player is not in the radius of detection
         return false;
+    }
+
+    /**
+     * Deals with the passive behaviour of a Wanderer monster
+     */
+    private void WandererAlgorithm()
+    {
+        // TODO: Implement a system to
+        // 1. Find a nearby patrol corner, that is not in ExcludedCorners
+        // 2. Set the targeting system to that nearby corner
+        // 3. Add that nearby corner to ExcludedCorners, and remove any excess corners if Queue is greater than 10
+        // 4. Avoid running this algo again until the monster reached the new corner
+    }
+
+    /**
+     * Deals with the passive behaviour of a Stalker monster
+     */
+    private void StalkerAlgorithm()
+    {
+        // TODO: Implement a system to
+        // 1. Find a nearby hide corner, that is not in ExcludedCorners
+        // 2. Set the targeting system to that nearby corner
+        // 3. Add that nearby corner to ExcludedCorners, and remove any excess corners if Queue is greater than 10
+        // 4. Avoid running this algo again until the monster reached the new corner, AND has waiting for SECONDS_TO_STALK
+    }
+
+    /**
+     * Deals with the passive behaviour of a Territorial monster
+     */
+    private void TerritorialAlgorithm()
+    {
+        // TODO: Implement a system to
+        // 1. Find a corner with the monster's territory, that is not in ExcludedCorners
+        // 2. Set the targeting system to that corner in the area
+        // 3. Add that corner to ExcludedCorners, and remove any excess corners if Queue is greater than 10 OR if all corners are explored then clear the queue
+        // 4. Avoid running this algo again until the monster reached the new corner, AND has waiting for SECONDS_TO_GUARD
     }
 }
