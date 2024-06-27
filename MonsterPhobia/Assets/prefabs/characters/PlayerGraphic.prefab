@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7112886133654654070}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 543128876956756177}
+        m_TargetAssemblyTypeName: MonsterText, Assembly-CSharp
+        m_MethodName: flipleft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &913302211564766318
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +147,7 @@ GameObject:
   - component: {fileID: 2402948193704621560}
   - component: {fileID: 389762058749564188}
   - component: {fileID: 558450954722446818}
+  - component: {fileID: 543128876956756177}
   m_Layer: 0
   m_Name: GUI
   m_TagString: Untagged
@@ -237,6 +250,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e159bf697c6782746b14edaa942f8ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &543128876956756177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913302211564766318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5ce7be28bc1a143b8a643428a9b174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137454895510611692
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +275,7 @@ GameObject:
   - component: {fileID: 7268968708249376411}
   m_Layer: 0
   m_Name: text left name
-  m_TagString: Untagged
+  m_TagString: leftname
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -640,7 +665,7 @@ GameObject:
   - component: {fileID: 2344148299242750993}
   m_Layer: 0
   m_Name: text right name
-  m_TagString: Untagged
+  m_TagString: rightname
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -966,7 +991,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 178724888826234662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 543128876956756177}
+        m_TargetAssemblyTypeName: MonsterText, Assembly-CSharp
+        m_MethodName: flipright
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6987416352457353226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1130,7 @@ GameObject:
   - component: {fileID: 8187957863752654913}
   m_Layer: 0
   m_Name: text right trait
-  m_TagString: Untagged
+  m_TagString: righttrait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1227,7 +1264,7 @@ GameObject:
   - component: {fileID: 1142755943806191522}
   m_Layer: 0
   m_Name: text left trait
-  m_TagString: Untagged
+  m_TagString: lefttrait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
