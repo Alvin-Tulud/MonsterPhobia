@@ -2,6 +2,7 @@ using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MonsterBehaviour : MonoBehaviour
@@ -13,6 +14,7 @@ public class MonsterBehaviour : MonoBehaviour
     // Constant values to change the monster's behaviour patterns
     private const int PASSIVE_SPEED = 2;
     private const int AGGRO_SPEED = 3;
+    private const int MAX_EXCLUDED_CORNERS = 10;
     private const float SECONDS_TO_LOSE_AGGRO = 5.0f;
     private const float DETECTION_DISTANCE = 2.5f;
     private const float SECONDS_TO_STALK = 1.0f;
@@ -68,12 +70,12 @@ public class MonsterBehaviour : MonoBehaviour
 
             if (MAttributes.MPassive == MonsterPassive.Stalker)             // If Random rolled a 2
             { 
-                WandererAlgorithm();
+                StalkerAlgorithm();
             }
 
             if (MAttributes.MPassive == MonsterPassive.Territorial)         // If Random rolled a 3
             {
-                WandererAlgorithm();
+                TerritorialAlgorithm();
             }
 
 
@@ -135,13 +137,15 @@ public class MonsterBehaviour : MonoBehaviour
             }
             else                     // Decrement the timer if the monster is unable to see the player
             {
-                EvasionTimer -= Time.deltaTime;
+                EvasionTimer += Time.deltaTime;
 
                 if (EvasionTimer >= SECONDS_TO_LOSE_AGGRO) // Check if Player has evaded the monster for SECONDS_TO_LOSE_AGGRO seconds
                 {
                     // Go back to Passive State
                     Aggroed = false;
                     ChangedMonsterState = true;
+                    // Reset timer for next time
+                    EvasionTimer = 0.0f;
                 }
             }
         }
@@ -191,7 +195,7 @@ public class MonsterBehaviour : MonoBehaviour
 
     /**
      * 
-     *  HELPER METHODS FOR AGGRO STATE
+     *  HELPER METHODS FOR PASSIVE STATE
      * 
      */
 
@@ -201,6 +205,7 @@ public class MonsterBehaviour : MonoBehaviour
      */
     private void addToExcludedCorners(GameObject newCorner)
     {
+        // Changes tag to excluded variant
         if (newCorner.CompareTag("cornerhide"))
         {
             newCorner.tag = "cornerExcluded_h";
@@ -211,11 +216,18 @@ public class MonsterBehaviour : MonoBehaviour
         }
 
         ExcludedCorners.Enqueue(newCorner);
+
+        // Makes sure the queue does nnot go over the size of MAX_EXCLUDED_CORNERS
+        if (ExcludedCorners.Count > MAX_EXCLUDED_CORNERS)
+        {
+            removeHeadOfExcludedCorners();
+        }
     }
     private void removeHeadOfExcludedCorners()
     {
         GameObject corner = ExcludedCorners.Dequeue();
 
+        // Changes tag back to original variant
         if (corner.CompareTag("cornerExcluded_h"))
         {
             corner.tag = "cornerhide";
@@ -234,10 +246,64 @@ public class MonsterBehaviour : MonoBehaviour
     }
 
     /**
+     *  Deals with using the exlcuded corners and the tag needed to find a specific kind of corner (string cornerType = null)
+     */ 
+    private GameObject nearestCornerToMonster(string cornerType = null)
+    {
+        RaycastHit2D[] allCorners = Physics2D.CircleCastAll((Vector2) transform.position, 100.0f, Vector2.zero);
+
+        // Remove corners from ExcludedCorners
+        allCorners = allCorners.Where(corner => !corner.collider.CompareTag("cornerExcluded_p") && !corner.collider.CompareTag("cornerExcluded_h")).ToArray();
+
+        // Remove all corner that DON'T use the same tag, or do nothing if no tag is specified
+        if (cornerType != null)
+        {
+            allCorners = allCorners.Where(corner => corner.collider.CompareTag(cornerType)).ToArray();
+        }
+
+        return allCorners[0].collider.gameObject;
+    }
+
+    /**
+     *  Checks if the monster is near the target corner
+     */
+    private bool nearTargetCorner()
+    {
+        const float DISTANCE_FOR_CORNER = 3.0f;
+
+
+
+        // Probably need to make a new tag to determine if the corner is a target 
+        return Physics2D.OverlapCircle; 
+    }
+
+
+    /**
      * Deals with the passive behaviour of a Wanderer monster
      */
     private void WandererAlgorithm()
-    {
+    {   
+        if (CornerTargetChange)
+        {   
+            // Find new Corner to go to
+            GameObject newCorner = nearestCornerToMonster("cornerhide");
+            // Add new Corner to queue
+            addToExcludedCorners(newCorner);
+            // Set target to the new Corner
+            targetSystem.target = newCorner.transform;
+            
+            // Start doing NOT this algo
+            CornerTargetChange = false;
+        } 
+        else
+        {
+            if ()
+            {
+                CornerTargetChange = true;
+            }
+        }
+        
+
         // TODO: Implement a system to
         // 1. Find a nearby patrol corner, that is not in ExcludedCorners
         // 2. Set the targeting system to that nearby corner
@@ -250,6 +316,19 @@ public class MonsterBehaviour : MonoBehaviour
      */
     private void StalkerAlgorithm()
     {
+        GameObject newCorner = nearestCornerToMonster("cornerpeek");
+
+        addToExcludedCorners(newCorner);
+
+        /* For waiting after getting to the location
+         
+        PassiveTimer += Time.deltaTime;
+
+            if (PassiveTimer >= )
+            {
+
+            }*/
+
         // TODO: Implement a system to
         // 1. Find a nearby hide corner, that is not in ExcludedCorners
         // 2. Set the targeting system to that nearby corner
@@ -262,6 +341,10 @@ public class MonsterBehaviour : MonoBehaviour
      */
     private void TerritorialAlgorithm()
     {
+        GameObject newCorner = nearestCornerToMonster();
+
+        // Need to make two new tags to determine which corners lie in the monster's terrritory AND when it is explored by the monster already
+
         // TODO: Implement a system to
         // 1. Find a corner with the monster's territory, that is not in ExcludedCorners
         // 2. Set the targeting system to that corner in the area
