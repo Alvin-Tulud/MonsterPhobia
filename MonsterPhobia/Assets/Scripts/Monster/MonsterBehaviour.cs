@@ -21,7 +21,7 @@ public class MonsterBehaviour : MonoBehaviour
     // Variables used for the monster's behaviour
     private MonsterAttributes MAttributes;
     private Queue<GameObject> ExcludedCorners = new Queue<GameObject>();
-    private bool TargetChangeNeeded = true;
+    private bool CornerTargetChange = true;
     private float PassiveTimer = 0.0f;
     private bool ChangedMonsterState = true;
     private bool Aggroed = false;
@@ -86,8 +86,10 @@ public class MonsterBehaviour : MonoBehaviour
                 // Change to Aggro state
                 Aggroed = true;
                 ChangedMonsterState = true;
-                // Clear the excluded corners;
-                ExcludedCorners.Clear();
+                // Clear out any passive variables used by the monster behaviours
+                clearExcludedCorners();
+                PassiveTimer = 0.0f;
+                CornerTargetChange = true;
             }
 
         }
@@ -147,6 +149,18 @@ public class MonsterBehaviour : MonoBehaviour
         
     }
 
+
+
+
+
+
+    /**
+     * 
+     *  HELPER METHODS FOR AGGRO STATE
+     * 
+     */ 
+
+
     /**
      * Checks if the monster is able to see the player at a certain radius; Raycasts with walls as colliders
      */
@@ -170,6 +184,53 @@ public class MonsterBehaviour : MonoBehaviour
 
         // Case in which the player is not in the radius of detection
         return false;
+    }
+
+
+
+
+    /**
+     * 
+     *  HELPER METHODS FOR AGGRO STATE
+     * 
+     */
+
+
+    /**
+     * Deals with the queue for ExcludedCorners, from adding them and changing their tag to "cornerExcluded_h" or "cornerExcluded_p" to removing them and restoring their original tag name
+     */
+    private void addToExcludedCorners(GameObject newCorner)
+    {
+        if (newCorner.CompareTag("cornerhide"))
+        {
+            newCorner.tag = "cornerExcluded_h";
+        }
+        else if (newCorner.CompareTag("cornerpeek"))
+        {
+            newCorner.tag = "cornerExcluded_p";
+        }
+
+        ExcludedCorners.Enqueue(newCorner);
+    }
+    private void removeHeadOfExcludedCorners()
+    {
+        GameObject corner = ExcludedCorners.Dequeue();
+
+        if (corner.CompareTag("cornerExcluded_h"))
+        {
+            corner.tag = "cornerhide";
+        }
+        else if (corner.CompareTag("cornerExcluded_p"))
+        {
+            corner.tag = "cornerpeek";
+        }
+    }
+    private void clearExcludedCorners()
+    {
+        while (ExcludedCorners.Count > 0)
+        {
+            removeHeadOfExcludedCorners();
+        }
     }
 
     /**
