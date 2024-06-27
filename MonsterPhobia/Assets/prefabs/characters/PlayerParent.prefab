@@ -129,9 +129,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8560650336702290591}
     m_Modifications:
+    - target: {fileID: 1137454895510611692, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
+      propertyPath: m_TagString
+      value: leftname
+      objectReference: {fileID: 0}
     - target: {fileID: 2412141624528461369, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
       propertyPath: m_Name
       value: PlayerGraphic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291894364424480219, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
+      propertyPath: m_TagString
+      value: rightname
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505023774045571586, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
+      propertyPath: m_TagString
+      value: righttrait
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841776791735987547, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
+      propertyPath: m_TagString
+      value: lefttrait
       objectReference: {fileID: 0}
     - target: {fileID: 8588401950550580228, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
       propertyPath: m_LocalPosition.x
