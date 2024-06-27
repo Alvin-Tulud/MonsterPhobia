@@ -24,15 +24,11 @@ public class GUIControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("here");
             book.SetActive(!onoff);
 
-            Debug.Log("here1");
             player.enabled = onoff;
-            Debug.Log("here2");
             flashLight.enabled = onoff;
 
-            Debug.Log("here3");
             onoff = !onoff;
         }
     }
