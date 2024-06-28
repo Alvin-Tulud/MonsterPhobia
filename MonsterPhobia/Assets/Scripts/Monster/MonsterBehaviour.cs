@@ -22,14 +22,14 @@ public class MonsterBehaviour : MonoBehaviour
     private const float SECONDS_TO_GUARD = 4.0f;
 
     // Variables used for the monster's behaviour
-    private MonsterAttributes MAttributes;
+    public MonsterAttributes MAttributes;
     private Queue<GameObject> ExcludedCorners;
-    public int QueueLength = 0;
-    public bool CornerTargetChange = true;
-    public bool WaitingAtTarget = false;
-    public bool ChangedMonsterState = true;
-    public bool Aggroed = false;
-    public float EvasionTimer = 0.0f;
+    private int QueueLength = 0;
+    private bool CornerTargetChange = true;
+    private bool WaitingAtTarget = false;
+    private bool ChangedMonsterState = true;
+    private bool Aggroed = false;
+    private float EvasionTimer = 0.0f;
     
 
 

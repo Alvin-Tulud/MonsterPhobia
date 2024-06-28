@@ -14,7 +14,7 @@ TagManager:
   - rightname
   - lefttrait
   - righttrait
-  - cornerterritory
+  - spawnpoint
   - cornerExcluded_t
   layers:
   - Default

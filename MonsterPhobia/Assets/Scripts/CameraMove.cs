@@ -11,12 +11,13 @@ public class CameraMove : MonoBehaviour
     void Start()
     {
         cam = gameObject.GetComponent<Transform>();
-        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
         if (player.position.x > cam.position.x + 9)
         {
             //Debug.Log("right");
