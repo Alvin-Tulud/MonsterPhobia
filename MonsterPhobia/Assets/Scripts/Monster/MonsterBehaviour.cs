@@ -15,7 +15,7 @@ public class MonsterBehaviour : MonoBehaviour
     // Constant values to change the monster's behaviour patterns
     private const int PASSIVE_SPEED = 2;
     private const int AGGRO_SPEED = 3;
-    private const int MAX_EXCLUDED_CORNERS = 20;
+    private const int MAX_EXCLUDED_CORNERS = 10;
     private const float SECONDS_TO_LOSE_AGGRO = 7.0f;
     private const float DETECTION_DISTANCE = 6.0f;
     private const float SECONDS_TO_STALK = 2.0f;
@@ -36,7 +36,7 @@ public class MonsterBehaviour : MonoBehaviour
     void Start()
     {
         // Randomly generate a new monster based on attributes
-        MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(2, 3));
+        MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(1, 3));
         // Start up ExcludedCorners Queue
         ExcludedCorners = new Queue<GameObject>();
     }
@@ -378,23 +378,6 @@ public class MonsterBehaviour : MonoBehaviour
                 StartCoroutine(WaitAfterReachingTarget(SECONDS_TO_STALK));
             }
         }
-
-
-
-        /* For waiting after getting to the location
-         
-        PassiveTimer += Time.deltaTime;
-
-            if (PassiveTimer >= )
-            {
-
-            }*/
-
-        // TODO: Implement a system to
-        // 1. Find a nearby hide corner, that is not in ExcludedCorners
-        // 2. Set the targeting system to that nearby corner
-        // 3. Add that nearby corner to ExcludedCorners, and remove any excess corners if Queue is greater than 10
-        // 4. Avoid running this algo again until the monster reached the new corner, AND has waiting for SECONDS_TO_STALK
     }
 
 
