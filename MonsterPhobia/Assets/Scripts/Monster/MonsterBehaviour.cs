@@ -221,10 +221,14 @@ public class MonsterBehaviour : MonoBehaviour
         {
             newCorner.tag = "cornerExcluded_p";
         }
+        else if (newCorner.CompareTag("cornerterritory"))
+        {
+            newCorner.tag = "cornerExcluded_t";
+        }
 
         ExcludedCorners.Enqueue(newCorner);
 
-        // Makes sure the queue does nnot go over the size of MAX_EXCLUDED_CORNERS
+        // Makes sure the queue does not go over the size of MAX_EXCLUDED_CORNERS
         if (ExcludedCorners.Count > MAX_EXCLUDED_CORNERS)
         {
             removeHeadOfExcludedCorners();
@@ -232,11 +236,11 @@ public class MonsterBehaviour : MonoBehaviour
 
         QueueLength = ExcludedCorners.Count;
     }
-    private void removeHeadOfExcludedCorners()
+    private GameObject removeHeadOfExcludedCorners()
     {
         GameObject corner = ExcludedCorners.Dequeue();
 
-        if (corner == null) { return; }
+        if (corner == null) { return null; }
 
         // Changes tag back to original variant
         if (corner.CompareTag("cornerExcluded_h"))
@@ -247,8 +251,14 @@ public class MonsterBehaviour : MonoBehaviour
         {
             corner.tag = "cornerpeek";
         }
+        else if (corner.CompareTag("cornerExcluded_t"))
+        {
+            corner.tag = "cornerterritory";
+        }
 
         QueueLength = ExcludedCorners.Count;
+
+        return corner;
     }
     private void clearExcludedCorners()
     {
@@ -271,10 +281,10 @@ public class MonsterBehaviour : MonoBehaviour
 
         if (allCorners.Length == 0) { return null; }
 
-        Debug.DrawLine(locationOfEntity, allCorners[0].transform.position,Color.red,2.0f);
+        //Debug.DrawLine(locationOfEntity, allCorners[0].transform.position,Color.red,2.0f);
 
         // Remove corners from ExcludedCorners
-        allCorners = allCorners.Where(corner => !corner.CompareTag("cornerExcluded_p") && !corner.CompareTag("cornerExcluded_h")).ToArray();
+        allCorners = allCorners.Where(corner => !corner.CompareTag("cornerExcluded_p") && !corner.CompareTag("cornerExcluded_h") && !corner.CompareTag("cornerExcluded_t") ).ToArray();
 
         // Remove all corner that DON'T use the same tag, or do nothing if no tag is specified
         if (cornerType != null)
@@ -282,15 +292,15 @@ public class MonsterBehaviour : MonoBehaviour
             allCorners = allCorners.Where(corner => corner.CompareTag(cornerType)).ToArray();
         }
 
-        // Sort allCorners by distance from the Monster
+        // Sort allCorners by distance from the Entity
         allCorners = allCorners.OrderBy(corner => (((Vector2) corner.transform.position) - locationOfEntity).magnitude).ToArray();
 
-        Debug.DrawLine(locationOfEntity, allCorners[0].transform.position, Color.blue, 2.0f);
+        //Debug.DrawLine(locationOfEntity, allCorners[0].transform.position, Color.blue, 2.0f);
 
 
         if (allCorners.Length > 0)
         {
-            Debug.Log(allCorners[0].gameObject);
+            //Debug.Log(allCorners[0].gameObject);
             return allCorners[0].gameObject;
         }
         return null;
@@ -387,16 +397,37 @@ public class MonsterBehaviour : MonoBehaviour
      * Deals with the passive behaviour of a Territorial monster
      */
     private void TerritorialAlgorithm()
-    {   
-        // Make a spawn 
-        GameObject newCorner = nearestCornerToEntity(transform);
+    {
+        if (CornerTargetChange)
+        {
+            // Makes Stalker not wait at previous target
+            WaitingAtTarget = false;
 
-        // Need to make two new tags to determine which corners lie in the monster's terrritory AND when it is explored by the monster already
+            // Find new Corner to go to
+            GameObject newCorner = nearestCornerToEntity(transform, "cornerterritory");
 
-        // TODO: Implement a system to
-        // 1. Find a corner with the monster's territory, that is not in ExcludedCorners
-        // 2. Set the targeting system to that corner in the area
-        // 3. Add that corner to ExcludedCorners, and remove any excess corners if Queue is greater than 10 OR if all corners are explored then clear the queue
-        // 4. Avoid running this algo again until the monster reached the new corner, AND has waiting for SECONDS_TO_GUARD
+            // Deals with the case of when the number of corners in the territory is less than MAX_EXCLUDED_CORNERS
+            if (newCorner == null)
+            {
+                newCorner = removeHeadOfExcludedCorners();
+            }
+
+            // Add new Corner to queue
+            addToExcludedCorners(newCorner);
+            // Set target to the new Corner
+            targetSystem.target = newCorner.transform;
+
+            // Start doing NOT this algo
+            CornerTargetChange = false;
+        }
+        else
+        {
+            // Make new Target after reaching current target corner
+            if (nearTargetCorner() && !WaitingAtTarget)
+            {
+                WaitingAtTarget = true;
+                StartCoroutine(WaitAfterReachingTarget(SECONDS_TO_GUARD));
+            }
+        }
     }
 }
