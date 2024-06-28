@@ -14,6 +14,8 @@ TagManager:
   - rightname
   - lefttrait
   - righttrait
+  - cornerterritory
+  - cornerExcluded_t
   layers:
   - Default
   - TransparentFX
