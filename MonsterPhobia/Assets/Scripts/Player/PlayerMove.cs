@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     bool canMove;
     Rigidbody2D rb;
-    public int speed;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {

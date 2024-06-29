@@ -33,7 +33,7 @@ public class MonsterAudio : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("FOOTSTEP");
+            //Debug.Log("FOOTSTEP");
             AudioClip clip = footstepSource.clip = footsteps[RandomFootstepSFX()];
             footstepSource.clip = clip;
             footstepSource.Play();

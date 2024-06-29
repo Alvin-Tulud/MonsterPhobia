@@ -16,6 +16,8 @@ TagManager:
   - righttrait
   - spawnpoint
   - cornerExcluded_t
+  - book
+  - GUI
   layers:
   - Default
   - TransparentFX
