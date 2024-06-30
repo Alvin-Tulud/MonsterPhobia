@@ -23,7 +23,10 @@ public class PlayerAnim : StateMachineBehaviour
         }
         if (stateInfo.IsName("Death"))
         {
-            timer-= 0.04f;
+            if(timer > 0.0f)
+            {
+                timer -= 0.04f;
+            }
             animator.speed = timer;
         }
     }
