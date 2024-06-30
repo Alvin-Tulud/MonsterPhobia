@@ -6,7 +6,7 @@ public class MonsterAudio : MonoBehaviour
 {
     AudioSource footstepSource;
     AudioSource sfxSource;
-    public float fsDelay = .5f;
+    public float fsDelay;
 
     public List<AudioClip> fsCrunch;
     public List<AudioClip> fsThud;

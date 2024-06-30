@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268677a8ef87b2e4991c0278ceadc29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fsDelay: 0.5
+  fsDelay: 0.35
   fsCrunch:
   - {fileID: 8300000, guid: 18fe493473ce21d4ebb493dd4b91a476, type: 3}
   - {fileID: 8300000, guid: 8222d24e6ee5ae84ebb699bd09a39aaf, type: 3}

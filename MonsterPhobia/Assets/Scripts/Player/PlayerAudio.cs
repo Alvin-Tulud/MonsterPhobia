@@ -14,7 +14,7 @@ public class PlayerAudio : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         footstepSource = GetComponent<AudioSource>();
-        //StartCoroutine(PlayFootsteps(.5f));
+        StartCoroutine(PlayFootsteps(.5f));
     }
 
     private void Update()
@@ -43,12 +43,20 @@ public class PlayerAudio : MonoBehaviour
 
     IEnumerator PlayFootsteps(float delay)
     {
-        while (rb.velocity == Vector2.zero)
+        while (true)
         {
-            AudioClip clip = footstepSource.clip = fsPlayer[RandomFootstepSFX()];
-            footstepSource.clip = clip;
-            footstepSource.Play();
-            yield return new WaitForSeconds(delay);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                AudioClip clip = footstepSource.clip = fsPlayer[RandomFootstepSFX()];
+                footstepSource.clip = clip;
+                footstepSource.Play();
+                yield return new WaitForSeconds(delay);
+            }
+            else
+            {
+                yield return null;
+            }
+
         }
 
 
