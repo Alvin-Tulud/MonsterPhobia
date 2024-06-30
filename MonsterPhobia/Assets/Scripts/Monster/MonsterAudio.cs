@@ -8,24 +8,36 @@ public class MonsterAudio : MonoBehaviour
     AudioSource sfxSource;
     public float fsDelay = .5f;
 
-    public List<AudioClip> footsteps;
-    // Start is called before the first frame update
+    public List<AudioClip> fsCrunch;
+    public List<AudioClip> fsThud;
+    public List<AudioClip> fsSquish;
+    public List<AudioClip> fsDrag;
+    public List<AudioClip> fsScrape;
+
+    List<List<AudioClip>> clipLists = new List<List<AudioClip>>();
+    List<AudioClip> mainClipList;
+
     void Start()
     {
         footstepSource = GetComponents<AudioSource>()[0];
         sfxSource = GetComponents<AudioSource>()[1];
+
+        clipLists.Add(fsCrunch);
+        clipLists.Add(fsThud);
+        clipLists.Add(fsSquish);
+        clipLists.Add(fsDrag);
+        clipLists.Add(fsScrape);
+
+        int listSelection = Random.Range(0, clipLists.Count);
+        mainClipList = clipLists[listSelection];
         StartCoroutine(PlayFootsteps(fsDelay));
 
-    }
-
-    private void Awake()
-    {
 
     }
 
     int RandomFootstepSFX()
     {
-        int index = Random.Range(0, footsteps.Count);
+        int index = Random.Range(0, mainClipList.Count);
         return index;
     }
 
@@ -33,8 +45,7 @@ public class MonsterAudio : MonoBehaviour
     {
         while (true)
         {
-            //Debug.Log("FOOTSTEP");
-            AudioClip clip = footstepSource.clip = footsteps[RandomFootstepSFX()];
+            AudioClip clip = footstepSource.clip = mainClipList[RandomFootstepSFX()];
             footstepSource.clip = clip;
             footstepSource.Play();
             yield return new WaitForSeconds(delay);
