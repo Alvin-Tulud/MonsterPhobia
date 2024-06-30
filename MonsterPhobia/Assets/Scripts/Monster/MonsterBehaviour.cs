@@ -430,4 +430,9 @@ public class MonsterBehaviour : MonoBehaviour
             }
         }
     }
+
+    public bool GetAggroState()
+    {
+        return Aggroed;
+    }
 }

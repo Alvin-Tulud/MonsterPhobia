@@ -58,5 +58,7 @@ public class PlayerMove : MonoBehaviour
 
     public void setCanMove(bool can) { canMove = can; }
 
+    public bool getCanMove() { return canMove; }
+
 
 }

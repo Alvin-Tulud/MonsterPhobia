@@ -45,12 +45,19 @@ public class PlayerAudio : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            if (gameObject.GetComponent<PlayerMove>().getCanMove())
             {
-                AudioClip clip = footstepSource.clip = fsPlayer[RandomFootstepSFX()];
-                footstepSource.clip = clip;
-                footstepSource.Play();
-                yield return new WaitForSeconds(delay);
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                {
+                    AudioClip clip = footstepSource.clip = fsPlayer[RandomFootstepSFX()];
+                    footstepSource.clip = clip;
+                    footstepSource.Play();
+                    yield return new WaitForSeconds(delay);
+                }
+                else
+                {
+                    yield return null;
+                }
             }
             else
             {

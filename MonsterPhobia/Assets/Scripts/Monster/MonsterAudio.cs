@@ -13,11 +13,16 @@ public class MonsterAudio : MonoBehaviour
     public List<AudioClip> fsSquish;
     public List<AudioClip> fsDrag;
     public List<AudioClip> fsScrape;
+    
+    public List<AudioClip> sfxScreech;
 
     List<List<AudioClip>> clipLists = new List<List<AudioClip>>();
-    List<AudioClip> mainClipList;
+    List<AudioClip> mainFSClipList;
 
     public int listSelection;
+
+    bool initialAggro = true;
+
 
     void Start()
     {
@@ -31,26 +36,62 @@ public class MonsterAudio : MonoBehaviour
         clipLists.Add(fsScrape);
 
         listSelection = Random.Range(0, clipLists.Count);
-        mainClipList = clipLists[listSelection];
+        mainFSClipList = clipLists[listSelection];
         StartCoroutine(PlayFootsteps(fsDelay));
-
+        StartCoroutine(MonsterScreench());
 
     }
 
-    int RandomFootstepSFX()
+
+    AudioClip RandomSFX(List<AudioClip> clipList)
     {
-        int index = Random.Range(0, mainClipList.Count);
-        return index;
+        int index = Random.Range(0, clipList.Count);
+        return clipList[index];
     }
 
     IEnumerator PlayFootsteps (float delay)
     {
         while (true)
         {
-            AudioClip clip = footstepSource.clip = mainClipList[RandomFootstepSFX()];
+            AudioClip clip = RandomSFX(mainFSClipList);
             footstepSource.clip = clip;
             footstepSource.Play();
             yield return new WaitForSeconds(delay);
+        }
+    }
+
+    IEnumerator MonsterScreench()
+    {
+        while (true)
+        {
+            if (gameObject.GetComponent<MonsterBehaviour>().GetAggroState())
+            {
+                if (initialAggro)
+                {
+                    sfxSource.clip = RandomSFX(sfxScreech);
+                    sfxSource.Play();
+                    initialAggro = false;
+
+                }
+                float rand = Random.Range(0.0f, 1.0f);
+                if (rand <= 0.80f)
+                {
+                    sfxSource.clip = RandomSFX(sfxScreech);
+                    sfxSource.Play();
+                }
+
+                yield return new WaitForSeconds(Random.Range(6f, 9.5f));
+
+            }
+            else
+            {
+                if (!initialAggro)
+                {
+                    initialAggro = true;
+                }
+                yield return null;
+            }
+
         }
 
 

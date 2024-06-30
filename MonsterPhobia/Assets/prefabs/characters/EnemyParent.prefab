@@ -218,6 +218,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3f3cceff365b1374bac2c78c12085b60, type: 3}
   - {fileID: 8300000, guid: 9ab56ae8bf4c1f6408b954d31a83948b, type: 3}
   - {fileID: 8300000, guid: 9e32c71eeec1f4845885734f5f0dd94e, type: 3}
+  sfxScreech:
+  - {fileID: 8300000, guid: 81cc20e384a35b24392695dad8aef256, type: 3}
+  - {fileID: 8300000, guid: 22bfd62d40f58e74e84b91c9ff969cea, type: 3}
+  - {fileID: 8300000, guid: 2ea0dcf08e3eac040b213603b1f1ad91, type: 3}
+  - {fileID: 8300000, guid: 083e3a035b36a094e8c8adf164c826f7, type: 3}
   listSelection: 0
 --- !u!82 &8401996909690863085
 AudioSource:

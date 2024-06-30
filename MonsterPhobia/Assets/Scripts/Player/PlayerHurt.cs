@@ -21,6 +21,7 @@ public class PlayerHurt : MonoBehaviour
     float speed;
     bool doneZooming;
     bool gotPosition;
+    public AudioClip playerDeathSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -111,6 +112,8 @@ public class PlayerHurt : MonoBehaviour
         if (collision.transform.CompareTag("Enemy"))
         {
             isHit = true;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(playerDeathSFX,2f);
+
         }
     }
 }
