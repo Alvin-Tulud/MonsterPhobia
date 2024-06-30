@@ -21,7 +21,7 @@ public class MonsterText : MonoBehaviour
 
     //need to grab values from spawner game object
     private Dictionary<string, MonsterAttributes> monsters = new Dictionary<string, MonsterAttributes>();
-    private string realname;
+    public string realname;
     private List<string> monsternames = new List<string>();
     private List<int> monstersounds = new List<int>();
 
