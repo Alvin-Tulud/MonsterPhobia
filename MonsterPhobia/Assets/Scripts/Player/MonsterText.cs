@@ -23,6 +23,13 @@ public class MonsterText : MonoBehaviour
     private Dictionary<string, MonsterAttributes> monsters = new Dictionary<string, MonsterAttributes>();
     private string realname;
     private List<string> monsternames = new List<string>();
+    private List<int> monstersounds = new List<int>();
+
+
+    List<string> names = new List<string>() { "Knauk", "Crang", "Zuc", "Brik", "Zremkes", "Clebrag", "Ebbik", "Zrozrek", "Qheikarg",
+            "Ezdiad", "Stres", "Zasz", "Bhrobhruh", "Crinszi", "Akas", "Vrutte", "Zrilgis", "Umqeisz", "Scisz", "Dusz", "Xon", "Vusz", "Ekziz", "Eemgam",
+            "Ghrezsias", "Snurdi", "Bhrulki", "Snagrus" };
+
 
     bool hasaddedcontent = false;
 
@@ -36,23 +43,39 @@ public class MonsterText : MonoBehaviour
     {
         if (!hasaddedcontent)
         {
-            MonsterAttributes enemy = GameObject.FindWithTag("Enemy").GetComponent<MonsterBehaviour>().MAttributes;
+            GameObject monster = GameObject.FindWithTag("Enemy");
+            MonsterAttributes monstertrait = monster.GetComponent<MonsterBehaviour>().MAttributes;
             realname = randomName();
             monsternames.Add(realname);
-            monsters.Add(realname, enemy);
+            monsters.Add(realname, monstertrait);
 
 
             for (int i = 0; i < 3; i++)
             {
-                enemy = new MonsterAttributes((MonsterType)Random.Range(1, 3));
+                monstertrait = new MonsterAttributes((MonsterType)Random.Range(1, 3));
+
                 string name = randomName();
                 monsternames.Add(name);
-                monsters.Add(name, enemy);
+                monsters.Add(name, monstertrait);
             }
 
             System.Random rng = new System.Random();
 
             monsternames.OrderBy(x => rng.Next()).ToList();
+
+            for (int i = 0; i < monsternames.Count; i++)
+            {
+                if (monsternames[i] == realname)
+                {
+                    //add audio trait
+                    monstersounds.Add(monster.GetComponent<MonsterAudio>().listSelection);
+                }
+                else
+                {
+                    //add random audio
+                    monstersounds.Add(Random.Range(0,5));
+                }
+            }
 
 
             hasaddedcontent = true;
@@ -83,6 +106,9 @@ public class MonsterText : MonoBehaviour
 
             trait_left.text = interprettype(leftMA);
             trait_right.text = interprettype(rightMA);
+
+            trait_left.text += "\n" + interpretsound(monstersounds[pageopenleft]);
+            trait_right.text += "\n" + interpretsound(monstersounds[pageopenright]);
         }
     }
 
@@ -106,11 +132,9 @@ public class MonsterText : MonoBehaviour
     {
         string name;
 
-        List<string> names = new List<string>() { "Knauk", "Crang", "Zuc", "Brik", "Zremkes", "Clebrag", "Ebbik", "Zrozrek", "Qheikarg", 
-            "Ezdiad", "Stres", "Zasz", "Bhrobhruh", "Crinszi", "Akas", "Vrutte", "Zrilgis", "Umqeisz", "Scisz", "Dusz", "Xon", "Vusz", "Ekziz", "Eemgam",
-            "Ghrezsias", "Snurdi", "Bhrulki", "Snagrus" };
-
         name = names[Random.Range(0, names.Count)];
+
+        names.Remove(name);
 
         return name;
     }
@@ -122,13 +146,13 @@ public class MonsterText : MonoBehaviour
         switch (attributes.MType)
         {
             case MonsterType.Axylotyl:
-                type = "This creature likes to Wander";
+                type = " - Likes to Wander";
                 break;
             case MonsterType.Bill:
-                type = "They are around you Stalking";
+                type = " - They are around you Stalking";
                 break;
             case MonsterType.Garry:
-                type = "This creature doesn't like us in its Territory";
+                type = " - Doesn't like us in its Territory";
                 break;
             case MonsterType.None:
             default:
@@ -138,4 +162,35 @@ public class MonsterText : MonoBehaviour
 
         return type;
     }
+
+    string interpretsound(int clip)
+    {
+        string sound;
+
+        switch(clip)
+        {
+            case 0:
+                sound = " - Sounds Crunchy";
+                break;
+            case 1:
+                sound = " - Has a Heavy Step";
+                break;
+            case 2:
+                sound = " - really Slimy and Wet";
+                break;
+            case 3:
+                sound = " - Drags its limbs across the floor";
+                break;
+            case 4:
+                sound = " - has long claws Scraping";
+                break;
+            default:
+                sound = "fuck you";
+                break;
+        }
+
+        return sound;
+    }
 }
+
+

@@ -16,9 +16,9 @@ public class MonsterBehaviour : MonoBehaviour
     private const int PASSIVE_SPEED = 2;
     private const int AGGRO_SPEED = 3;
     private const int MAX_EXCLUDED_CORNERS = 10;
-    private const float SECONDS_TO_LOSE_AGGRO = 7.0f;
-    private const float DETECTION_DISTANCE = 6.0f;
-    private const float SECONDS_TO_STALK = 2.0f;
+    private const float SECONDS_TO_LOSE_AGGRO = 6.0f;
+    private const float DETECTION_DISTANCE = 4.5f;
+    private const float SECONDS_TO_STALK = 3.0f;
     private const float SECONDS_TO_GUARD = 4.0f;
 
     // Variables used for the monster's behaviour
@@ -28,7 +28,7 @@ public class MonsterBehaviour : MonoBehaviour
     private bool CornerTargetChange = true;
     private bool WaitingAtTarget = false;
     private bool ChangedMonsterState = true;
-    private bool Aggroed = false;
+    public bool Aggroed = false;
     private float EvasionTimer = 0.0f;
     
 

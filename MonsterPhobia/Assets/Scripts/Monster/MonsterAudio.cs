@@ -17,6 +17,8 @@ public class MonsterAudio : MonoBehaviour
     List<List<AudioClip>> clipLists = new List<List<AudioClip>>();
     List<AudioClip> mainClipList;
 
+    public int listSelection;
+
     void Start()
     {
         footstepSource = GetComponents<AudioSource>()[0];
@@ -28,7 +30,7 @@ public class MonsterAudio : MonoBehaviour
         clipLists.Add(fsDrag);
         clipLists.Add(fsScrape);
 
-        int listSelection = Random.Range(0, clipLists.Count);
+        listSelection = Random.Range(0, clipLists.Count);
         mainClipList = clipLists[listSelection];
         StartCoroutine(PlayFootsteps(fsDelay));
 

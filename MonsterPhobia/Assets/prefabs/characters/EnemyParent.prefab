@@ -108,7 +108,7 @@ MonoBehaviour:
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 1
+  whenCloseToDestination: 0
   constrainInsideGraph: 1
 --- !u!114 &3538501898376502907
 MonoBehaviour:
@@ -168,7 +168,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.4, y: 0.7}
+  m_Size: {x: 0.2, y: 0.4}
   m_EdgeRadius: 0
 --- !u!114 &148645650265284258
 MonoBehaviour:
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSystem: {fileID: 3538501898376502907}
   pathingSystem: {fileID: 1555880988713710292}
+  Aggroed: 0
 --- !u!114 &-6384971358504845501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +218,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3f3cceff365b1374bac2c78c12085b60, type: 3}
   - {fileID: 8300000, guid: 9ab56ae8bf4c1f6408b954d31a83948b, type: 3}
   - {fileID: 8300000, guid: 9e32c71eeec1f4845885734f5f0dd94e, type: 3}
+  listSelection: 0
 --- !u!82 &8401996909690863085
 AudioSource:
   m_ObjectHideFlags: 0

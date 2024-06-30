@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7963436590921775603}
   - component: {fileID: 3322115531026319299}
   - component: {fileID: 4956086766776563820}
+  - component: {fileID: -845002892559251347}
   - component: {fileID: 5209018065789507597}
   - component: {fileID: -2944808543438721633}
   m_Layer: 6
@@ -140,6 +141,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 00b1d73ca70b1f5408ca6088db066efe, type: 3}
   - {fileID: 8300000, guid: 855379183de1939488a50d9136040810, type: 3}
   - {fileID: 8300000, guid: ed473089c5706fb4aac821229ad2dafc, type: 3}
+--- !u!114 &-845002892559251347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639322322464609562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37dfe24ffd5990c4fa16a2f50548a476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!81 &5209018065789507597
 AudioListener:
   m_ObjectHideFlags: 0
@@ -315,6 +328,10 @@ PrefabInstance:
     - target: {fileID: 6991148359313388635, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145599767774666327, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8588401950550580228, guid: 1f98c51dc016e204280324fac9d606a6, type: 3}
       propertyPath: m_LocalPosition.x
