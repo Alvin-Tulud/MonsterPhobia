@@ -13,11 +13,11 @@ public class MonsterBehaviour : MonoBehaviour
     public AIPath pathingSystem;                     // For changing Speed
 
     // Constant values to change the monster's behaviour patterns
-    private const int PASSIVE_SPEED = 2;
+    private const int PASSIVE_SPEED = 3;
     private const int AGGRO_SPEED = 3;
     private const int MAX_EXCLUDED_CORNERS = 10;
-    private const float SECONDS_TO_LOSE_AGGRO = 6.0f;
-    private const float DETECTION_DISTANCE = 4.5f;
+    private const float SECONDS_TO_LOSE_AGGRO = 15.0f;
+    private const float DETECTION_DISTANCE = 5.0f;
     private const float SECONDS_TO_STALK = 3.0f;
     private const float SECONDS_TO_GUARD = 4.0f;
 

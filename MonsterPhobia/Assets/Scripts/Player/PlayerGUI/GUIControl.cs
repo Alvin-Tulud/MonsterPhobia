@@ -7,6 +7,7 @@ public class GUIControl : MonoBehaviour
 {
     GameObject book;
     GameObject guess;
+    GameObject narration;
     PlayerMove player;
     FlashLightMove flashLight;
     bool onoff;
@@ -16,19 +17,25 @@ public class GUIControl : MonoBehaviour
     {
         guess = transform.GetChild(0).gameObject;
         book = transform.GetChild(1).gameObject;
+        narration = transform.GetChild(2).gameObject;
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
         flashLight = GameObject.FindGameObjectWithTag("FlashLight").GetComponent<FlashLightMove>();
 
         onoff = false;
+
+        book.SetActive(false);
+        guess.SetActive(false);
+        narration.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             book.SetActive(!onoff);
             guess.SetActive(!onoff);
+            narration.SetActive(!onoff);
 
             player.enabled = onoff;
             flashLight.enabled = onoff;
