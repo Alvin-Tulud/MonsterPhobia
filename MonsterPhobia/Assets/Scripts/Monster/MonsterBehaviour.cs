@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class MonsterBehaviour : MonoBehaviour
 {
@@ -39,6 +40,22 @@ public class MonsterBehaviour : MonoBehaviour
         MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(1, 3));
         // Start up ExcludedCorners Queue
         ExcludedCorners = new Queue<GameObject>();
+
+        // Converts nearby corners to territory when spawned as Territorial
+        if (MAttributes.MPassive == MonsterPassive.Territorial)
+        {
+            float RADIUS_FOR_TERRITORY = 25.0f;
+            LayerMask cornerMask = LayerMask.GetMask("Corner");
+            Vector2 locationOfMonster = (Vector2)transform.position;
+
+            Collider2D[] allCornersNearby = Physics2D.OverlapCircleAll(locationOfMonster, RADIUS_FOR_TERRITORY, cornerMask);
+
+            foreach (Collider2D corner in allCornersNearby)
+            {
+                corner.tag = "cornerterritory";
+            }
+        }
+
     }
 
     void FixedUpdate()
