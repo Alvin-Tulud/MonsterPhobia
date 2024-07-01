@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GuessMonster : MonoBehaviour
 {
+    public InputField iField;
     string realname;
     string guessname;
     bool isright;
@@ -26,9 +27,14 @@ public class GuessMonster : MonoBehaviour
     public void GuessCheck()
     {
 
-        if (canguess && guessname == realname)
+        if (canguess)
         {
-            Debug.Log("win");
+           guessname = iField.text;
+
+           if (guessname == realname) 
+           {
+              Debug.Log("win");
+           }
         }
     }
 }
