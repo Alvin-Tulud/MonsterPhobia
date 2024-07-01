@@ -43,6 +43,7 @@ public class MonsterText : MonoBehaviour
     {
         if (!hasaddedcontent)
         {
+            //add in real monster with real audio attatched
             GameObject monster = GameObject.FindWithTag("Enemy");
             MonsterAttributes monstertrait = monster.GetComponent<MonsterBehaviour>().MAttributes;
             realname = randomName();
@@ -50,19 +51,28 @@ public class MonsterText : MonoBehaviour
             monsters.Add(realname, monstertrait);
 
 
+
+            //add in other random monsters
             for (int i = 0; i < 3; i++)
             {
-                monstertrait = new MonsterAttributes((MonsterType)Random.Range(1, 3));
+                monstertrait = new MonsterAttributes((MonsterType)Random.Range(1, 4));
 
                 string name = randomName();
                 monsternames.Add(name);
                 monsters.Add(name, monstertrait);
             }
 
-            System.Random rng = new System.Random();
 
-            monsternames.OrderBy(x => rng.Next()).ToList();
 
+            //place the real name at a random spot in the list
+            int randomSpot = Random.Range(0, monsternames.Count);
+            string temp = monsternames[randomSpot];
+            monsternames[randomSpot] = realname;
+            monsternames[0] = temp;
+            
+
+
+            //add in aduio to the correct spots for the monsters
             for (int i = 0; i < monsternames.Count; i++)
             {
                 if (monsternames[i] == realname)
@@ -81,6 +91,8 @@ public class MonsterText : MonoBehaviour
             hasaddedcontent = true;
         }
 
+
+        //for page turning and adding text to it
         if (GameObject.FindGameObjectWithTag("leftname") != null)
         {
             name_left = GameObject.FindGameObjectWithTag("leftname").GetComponent<TextMeshProUGUI>();
