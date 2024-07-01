@@ -17,8 +17,8 @@ public class MonsterBehaviour : MonoBehaviour
     private const int PASSIVE_SPEED = 3;
     private const int AGGRO_SPEED = 3;
     private const int MAX_EXCLUDED_CORNERS = 10;
-    private const float SECONDS_TO_LOSE_AGGRO = 15.0f;
-    private const float DETECTION_DISTANCE = 5.0f;
+    private const float SECONDS_TO_LOSE_AGGRO = 10.0f;
+    private const float DETECTION_DISTANCE = 5.5f;
     private const float SECONDS_TO_STALK = 3.0f;
     private const float SECONDS_TO_GUARD = 4.0f;
 
@@ -37,7 +37,7 @@ public class MonsterBehaviour : MonoBehaviour
     void Start()
     {
         // Randomly generate a new monster based on attributes
-        MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(1, 3));
+        MAttributes = new MonsterAttributes((MonsterType) UnityEngine.Random.Range(1, 4));
         // Start up ExcludedCorners Queue
         ExcludedCorners = new Queue<GameObject>();
 

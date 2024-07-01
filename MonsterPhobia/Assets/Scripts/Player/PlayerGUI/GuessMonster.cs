@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GuessMonster : MonoBehaviour
@@ -41,7 +42,8 @@ public class GuessMonster : MonoBehaviour
         }
         else if (!hasseen)
         {
-            narration.text = "i should go find it first";
+            narration.text = "I should find it before guessing";
+            input.interactable = false;
         }
     }
 
@@ -56,6 +58,10 @@ public class GuessMonster : MonoBehaviour
                 Debug.Log("win");
                 narration.text = "That sounds about right";
                 isright = true;
+                playertransform.GetComponent<Collider2D>().enabled = false;
+
+                //GameObject.FindWithTag("Event").SetActive(false);
+                StartCoroutine(winWait());
             }
             else
             {
@@ -97,7 +103,13 @@ public class GuessMonster : MonoBehaviour
 
     IEnumerator clearNarration()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         narration.text = "";
+    }
+
+    IEnumerator winWait()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
     }
 }

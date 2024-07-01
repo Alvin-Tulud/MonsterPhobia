@@ -18,6 +18,8 @@ TagManager:
   - cornerExcluded_t
   - book
   - GUI
+  - Tutorial
+  - Event
   layers:
   - Default
   - TransparentFX

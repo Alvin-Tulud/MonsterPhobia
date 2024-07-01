@@ -25,7 +25,7 @@ public class PlayerAnim : StateMachineBehaviour
         {
             if(timer > 0.0f)
             {
-                timer -= 0.04f;
+                timer -= 0.1f;
             }
             animator.speed = timer;
         }
