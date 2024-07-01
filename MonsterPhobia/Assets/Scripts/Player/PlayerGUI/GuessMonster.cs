@@ -13,11 +13,11 @@ public class GuessMonster : MonoBehaviour
     string guessname;
     bool isright;
     public bool canguess;
-    bool hasseen;
+    public bool hasseen;
 
 
     Transform playertransform;
-    private const float DETECTION_DISTANCE = 7.0f;
+    private const float DETECTION_DISTANCE = 8.0f;
     private const float WAIT_SECONDS = 15.0f;
 
 
@@ -39,6 +39,7 @@ public class GuessMonster : MonoBehaviour
         {
             canguess = true;
             hasseen = true;
+            input.interactable = true;
         }
         else if (!hasseen)
         {
